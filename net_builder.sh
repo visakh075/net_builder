@@ -4,32 +4,37 @@
 # runs on directory runs make_all.sh file
 # copy the result files to builder_box folder
 net_build(){
-	echo "FILELIST"
+	echo "net_builder"
 	AR=`arch`
 	usr=`whoami`
-	echo $usr
-	mkdir "net_build_${AR}" 
-	while read p
+	mkdir -p "net_build_${AR}" 
+	while IFP= read -r line
 	do
-		echo $p
+		if test -f $line
+		then
+			#echo "$line"
+			echo "net_build_${AR}/${line##*/}"
+			cp $line "net_build_${AR}/${line##*/}"
+		else
+			echo "$line  :0"
+		fi
 	done < list.net_build
 }
 checklist(){
 	if test -f list.net_build
 	then
-		echo "Valid list"
 		net_build
 	else
-		echo "No list found"
+		echo "error : no list.net_build found"
 		exit
 	fi
 }
 if test -f make_all.sh
 then
-	echo "Valid path"
+	bash make_all.sh
 	checklist
 else
-	echo "Invalid path"
+	echo "error : no make_all.sh found"
 	exit
 fi
 exit
