@@ -1,0 +1,1 @@
+sudo cp net_builder.sh /usr/bin
