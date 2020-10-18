@@ -5,9 +5,10 @@
 # copy the result files to builder_box folder
 net_build(){
 	echo "FILELIST"
-	AR=`arch` 
-	echo $AR
-	mkdir "net_build${AR}" 
+	AR=`arch`
+	usr=`whoami`
+	echo $usr
+	mkdir "net_build_${AR}" 
 	while read p
 	do
 		echo $p
