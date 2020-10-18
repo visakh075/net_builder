@@ -2,4 +2,4 @@
 config file for netbuilder
 
 * run **make_all.sh**
-* config file contains files to copy and path
+* file "list.net_build" contains files to copy and path
